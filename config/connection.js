@@ -45,3 +45,30 @@ module.exports = sequelize;
 // // (database name, user, password). By exporting the sequelize instance, 
 // // it makes the connection available for use in defining models and executing 
 // // database operations.
+
+
+
+
+
+
+
+// require('dotenv').config();
+// const Sequelize = require('sequelize');
+
+// const sequelize = process.env.DB_URL
+//   ? new Sequelize(process.env.DB_URL)
+//   : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+//       host: process.env.DB_HOST || 'localhost',
+//       port: process.env.DB_PORT || 5432,
+//       dialect: 'postgres',
+//       dialectOptions: {
+//         decimalNumbers: true,
+//       },
+//     });
+
+// sequelize
+//   .authenticate()
+//   .then(() => console.log('Connection to database successful.'))
+//   .catch((err) => console.error('Unable to connect to database:', err));
+
+// module.exports = sequelize;

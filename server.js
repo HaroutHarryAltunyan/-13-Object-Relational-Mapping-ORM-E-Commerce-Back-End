@@ -1,78 +1,121 @@
-// // origins: starter code {keep code}
-// // 1. Import Express
 const express = require('express');
-// // •	Purpose: Imports the express framework, which is a web application framework for Node.js.
-// // •	Usage: express is used to create and configure the web server.
-
-// // 2. Import Routes
 const routes = require('./routes');
-// // •	Purpose: Imports the routes defined in the ./routes directory or file.
-// // •	Usage: These routes typically handle various API endpoints (e.g., /api/users, /api/posts).
+// import sequelize connection
+const sequelize = require('./config/connection');
 
-// //!!!!!!!!!!!!!!!!!!>
-// {TODO} import sequelize connection // // (TODO)
-const sequelize = require("./config/connection"); //double check this code do nott submit this code
-// // •	Purpose: Imports the Sequelize instance configured in the ./config/connection file.
-// // •	Usage: Allows you to interact with the database and synchronize models.
-
-
-// // 3. Initialize Express App
 const app = express();
-// // •	Purpose: Creates an instance of the Express application.
-// // •	Usage: The app object is used to configure the server, add middleware, and define routes.
-
-// // 4. Set the Server Port
 const PORT = process.env.PORT || 3001;
-// // •	Purpose: Sets the port number for the server.
-// // •	Details:
-// // •	process.env.PORT: If an environment variable PORT is defined (e.g., in a production environment), use that.
-// // •	3001: If PORT is not defined, default to 3001.
 
-// // 5. Middleware for Parsing JSON Requests
 app.use(express.json());
-// // •	Purpose: Parses incoming requests with JSON payloads.
-// // •	Usage: Allows the server to handle application/json content in request bodies.
-
-// // 6. Middleware for Parsing URL-Encoded Requests
 app.use(express.urlencoded({ extended: true }));
-// // •	Purpose: Parses incoming requests with URL-encoded payloads (form submissions).
-// // •	Details:
-// // •	{ extended: true }: Allows parsing of nested objects.
 
-// // 7. Use the Imported Routes
 app.use(routes);
-// // •	Purpose: Mounts the routes imported earlier onto the application.
-// // •	Usage: Any incoming request matching the defined routes will be handled accordingly (e.g., GET, POST requests).
 
-// //!!!!!!!!!!!!!!!!!!>
-// {TODO} sync sequelize models to the database, then turn on the server // // {TODO}
-sequelize.sync({ force: false }).then(() => { //double check this code do nott submit this code
-// // Explanation of sequelize.sync({ force: false })
-// // •	Purpose: Synchronizes all Sequelize models with the database.
-// // •	Details:
-// // •	{ force: false }:
-// // •	If set to true, it drops existing tables and recreates them (useful during development).
-// // •	If set to false, it preserves existing data and only creates tables if they don’t exist.
-
-
-// // 8. Start the Server
+// sync sequelize models to the database, then turn on the server
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
-  });
 });
-// // •	Purpose: Starts the server and listens for incoming requests on the specified PORT.
-// // •	Callback: Logs a message to the console when the server is running successfully.
 
 
-// // Summary of Functionality
+// turn on connection to db and server from 13 miniproject 28
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
+});
 
-// // This script sets up a basic Express server with:
-// // 	1.	Route Handling: Imports and applies predefined routes.
-// // 	2.	Middleware: Parses incoming JSON and form data.
-// // 	3.	Port Configuration: Runs on the port specified in the environment or defaults to 3001.
-// // 	4.	Server Startup: Listens for incoming requests and logs a message when the server is live.
 
-// // This structure is common in web applications to manage API endpoints and process client requests.
+
+
+// require('dotenv').config();
+// console.log('Database Credentials:', {
+//   DB_NAME: process.env.DB_NAME,
+//   DB_USER: process.env.DB_USER,
+//   DB_PASSWORD: process.env.DB_PASSWORD,
+//   DB_HOST: process.env.DB_HOST,
+// });
+
+
+// // // origins: starter code {keep code}
+// // // 1. Import Express
+// const express = require('express');
+// // // •	Purpose: Imports the express framework, which is a web application framework for Node.js.
+// // // •	Usage: express is used to create and configure the web server.
+
+// // // 2. Import Routes
+// const routes = require('./routes');
+// // // •	Purpose: Imports the routes defined in the ./routes directory or file.
+// // // •	Usage: These routes typically handle various API endpoints (e.g., /api/users, /api/posts).
+
+// // //!!!!!!!!!!!!!!!!!!>
+// // {TODO} import sequelize connection // // (TODO)
+// const sequelize = require("./config/connection"); //double check this code do nott submit this code
+// // // •	Purpose: Imports the Sequelize instance configured in the ./config/connection file.
+// // // •	Usage: Allows you to interact with the database and synchronize models.
+
+
+// // // 3. Initialize Express App
+// const app = express();
+// // // •	Purpose: Creates an instance of the Express application.
+// // // •	Usage: The app object is used to configure the server, add middleware, and define routes.
+
+// // // 4. Set the Server Port
+// const PORT = process.env.PORT || 3001;
+// // // •	Purpose: Sets the port number for the server.
+// // // •	Details:
+// // // •	process.env.PORT: If an environment variable PORT is defined (e.g., in a production environment), use that.
+// // // •	3001: If PORT is not defined, default to 3001.
+
+// // // 5. Middleware for Parsing JSON Requests
+// app.use(express.json());
+// // // •	Purpose: Parses incoming requests with JSON payloads.
+// // // •	Usage: Allows the server to handle application/json content in request bodies.
+
+// // // 6. Middleware for Parsing URL-Encoded Requests
+// app.use(express.urlencoded({ extended: true }));
+// // // •	Purpose: Parses incoming requests with URL-encoded payloads (form submissions).
+// // // •	Details:
+// // // •	{ extended: true }: Allows parsing of nested objects.
+
+// // // 7. Use the Imported Routes
+// app.use(routes);
+// // // •	Purpose: Mounts the routes imported earlier onto the application.
+// // // •	Usage: Any incoming request matching the defined routes will be handled accordingly (e.g., GET, POST requests).
+
+// // //!!!!!!!!!!!!!!!!!!>
+// // {TODO} sync sequelize models to the database, then turn on the server // // {TODO}
+// sequelize.sync({ force: false }).then(() => { //double check this code do nott submit this code
+// // // Explanation of sequelize.sync({ force: false })
+// // // •	Purpose: Synchronizes all Sequelize models with the database.
+// // // •	Details:
+// // // •	{ force: false }:
+// // // •	If set to true, it drops existing tables and recreates them (useful during development).
+// // // •	If set to false, it preserves existing data and only creates tables if they don’t exist.
+
+
+// // // 8. Start the Server
+// app.listen(PORT, () => {
+//   console.log(`App listening on port ${PORT}!`);
+//   });
+// });
+// // // •	Purpose: Starts the server and listens for incoming requests on the specified PORT.
+// // // •	Callback: Logs a message to the console when the server is running successfully.
+
+
+// // // Summary of Functionality
+
+// // // This script sets up a basic Express server with:
+// // // 	1.	Route Handling: Imports and applies predefined routes.
+// // // 	2.	Middleware: Parses incoming JSON and form data.
+// // // 	3.	Port Configuration: Runs on the port specified in the environment or defaults to 3001.
+// // // 	4.	Server Startup: Listens for incoming requests and logs a message when the server is live.
+
+// // // This structure is common in web applications to manage API endpoints and process client requests.
+
+
+
+
+
+
+
 
 
 // // To complete Express application with Sequelize integration and routing:
