@@ -4,6 +4,9 @@ const { Model, DataTypes } = require('sequelize');
 // // •	Model: The base class for all Sequelize models.
 // // •	DataTypes: Provides types for defining model attributes (e.g., INTEGER, STRING).
 
+const Product = require("./Product.js"); // Import Product model
+const ProductTag = require("./ProductTag.js"); // Import ProductTag model
+
 // // 2. Import Database Connection
 const sequelize = require('../config/connection.js');
 // // •	Purpose: Imports the configured Sequelize connection instance.

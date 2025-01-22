@@ -10,6 +10,10 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 // // •	Purpose: Imports the configured Sequelize connection instance.
 
+const Category = require("./Category"); // Import Category model
+const Tag = require("./Tag"); // Import Tag model
+const ProductTag = require("./ProductTag"); // Import ProductTag model
+
 // Initialize Product model (table) by extending off Sequelize's Model class
 // // 3. Define the Product Class
 class Product extends Model {}
@@ -32,9 +36,12 @@ Product.init(
     allowNull: false,
   },
   price: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DECIMAL,
     allowNull: false,
+    validate: {
+      isDecimal: true, 
   },
+},
   stock: {
     type: DataTypes.INTEGER,
     allowNull: false,

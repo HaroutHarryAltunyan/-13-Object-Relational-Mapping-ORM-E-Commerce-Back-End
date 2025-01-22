@@ -33,6 +33,9 @@ Category.hasMany(Product, {
 Product.belongsToMany(Tag, {
   through: ProductTag,
   foreignKey: 'product_id',
+  otherKey: "tag_id",
+  onDelete: "CASCADE",
+  as: "tag",
 });
 // // •	Relationship: A Product can have multiple Tags through the ProductTag join table.
 // // •	through: Specifies the join table (ProductTag).
@@ -43,6 +46,8 @@ Product.belongsToMany(Tag, {
 Tag.belongsToMany(Product, {
   through: ProductTag,
   foreignKey: 'tag_id',
+  otherKey: "product_id",
+  onDelete: "CASCADE",
 });
 // // •	Relationship: A Tag can be associated with multiple Products through the ProductTag join table.
 // // •	through: Specifies the join table (ProductTag).

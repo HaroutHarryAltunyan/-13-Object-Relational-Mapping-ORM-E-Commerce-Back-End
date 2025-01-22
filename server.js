@@ -11,16 +11,20 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
 
-// Sync sequelize models to the database, then turn on the server
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}!`);
-  });
-});
+// // Sync sequelize models to the database, then turn on the server
+// sequelize.sync({ force: false }).then(() => {
+//   app.listen(PORT, () => {
+//     console.log(`App listening on port ${PORT}!`);
+//   });
+// });
 
-sequelize .authenticate() .then(() => {
-   console.log('Database connection established successfully.'); }) .catch((err) => {
-     console.error('Unable to connect to the database:', err); });
+// sequelize .authenticate() .then(() => {
+//    console.log('Database connection established successfully.'); }) .catch((err) => {
+//      console.error('Unable to connect to the database:', err); });
+
+     sequelize.sync({ force: false }).then(() => {
+      app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
+    });     
 
 
 
