@@ -1,6 +1,8 @@
 # 13 Object-Relational Mapping (ORM): E-Commerce Back End
 
-![In Insomnia, the user tests “GET tags,” “GET Categories,” and “GET All Products.”.](./assets/images/Screenshot%202025-01-22%20at%201.21.47 AM.png)
+![In Insomnia, the user tests “GET tags,” “GET Categories,” and “GET All Products.”.](./assets/images/firsttest.png.png)
+
+![In Insomnia, the user tests “GET tags,” “GET Categories,” and “GET All Products.”.](./assets/images/secondtest.png)
 
 ## Your Task
 
