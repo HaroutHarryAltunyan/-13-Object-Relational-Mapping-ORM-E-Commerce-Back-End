@@ -32,6 +32,7 @@ Category.init(
     category_name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
   },
   {
@@ -55,21 +56,6 @@ Category.init(
 // // 	•	Attributes:
 // // 	•	allowNull: false: Field cannot be NULL.
 
-
-// // 4. Initialize the Model with Columns
-// Category.init(
-//   {
-//     // define columns
-//   },
-//   {
-//     sequelize,
-//     timestamps: false,
-//     freezeTableName: true,
-//     underscored: true,
-//     modelName: 'category',
-//   }
-// );
-
 // // Export the Model
 
 module.exports = Category;
@@ -86,19 +72,3 @@ module.exports = Category;
 // // 	•	Uses snake_case for database fields.
 // // 	3.	Model Export: The model can be imported and used elsewhere in the app.
 
-// // Next Steps
-// // 	•	Sync the model with the database in your server file:
-// // sequelize.sync({ force: false });
-
-// // •	Use the model in routes to create or fetch categories:
-// // const Category = require('../models/Category');
-
-// // // Example: Fetch all categories
-// // app.get('/categories', async (req, res) => {
-// //   try {
-// //     const categories = await Category.findAll();
-// //     res.json(categories);
-// //   } catch (err) {
-// //     res.status(500).json({ error: err.message });
-// //   }
-// // });

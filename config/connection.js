@@ -10,18 +10,27 @@ const Sequelize = require('sequelize');
 // // •	Usage: Sequelize provides an interface for interacting with a database in a programmatic way (like defining models and running queries).
 
 // // 3. Initialize the Sequelize Instance
-const sequelize = process.env.DB_URL
-// // •	If process.env.DB_URL is set:
-  ? new Sequelize(process.env.DB_URL)
-// // •	Purpose: Connects to the database using a single URL string (e.g., postgres://user:password@localhost:5432/dbname).
+    const sequelize = process.env.DB_URL
+    // // •	If process.env.DB_URL is set:
+    ? new Sequelize(process.env.DB_URL)
+    // // •	Purpose: Connects to the database using a single URL string (e.g., postgres://user:password@localhost:5432/dbname).
+
 // // •	Common Usage: Useful in environments like cloud services (Heroku, AWS) where a full connection string is provided.  
-  : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-      host: 'localhost',
-      dialect: 'postgres',
-      dialectOptions: {
-        decimalNumbers: true,
-      },
-    });
+    : new Sequelize(
+      process.env.DB_NAME, 
+      process.env.DB_USER, 
+      process.env.DB_PASSWORD, {
+        host: process.env.DB_HOST || 'localhost',
+        port: process.env.DB_PORT || 5432,
+        dialect: 'postgres',
+        dialectOptions: {
+          decimalNumbers: true,
+        },
+      }
+    );
+
+
+
   //  // •	process.env.DB_NAME: The name of the database.
   //  // •	process.env.DB_USER: The database user.
   //  // •	process.env.DB_PASSWORD: The user’s password.
@@ -50,25 +59,3 @@ module.exports = sequelize;
 
 
 
-
-
-// require('dotenv').config();
-// const Sequelize = require('sequelize');
-
-// const sequelize = process.env.DB_URL
-//   ? new Sequelize(process.env.DB_URL)
-//   : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-//       host: process.env.DB_HOST || 'localhost',
-//       port: process.env.DB_PORT || 5432,
-//       dialect: 'postgres',
-//       dialectOptions: {
-//         decimalNumbers: true,
-//       },
-//     });
-
-// sequelize
-//   .authenticate()
-//   .then(() => console.log('Connection to database successful.'))
-//   .catch((err) => console.error('Unable to connect to database:', err));
-
-// module.exports = sequelize;
